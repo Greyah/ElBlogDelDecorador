@@ -39,6 +39,7 @@ textodecora<- html_text(decora)
 
 print(textodecora)
 
+#limpiar texto
 textodecora <- gsub("\r","",textodecora)
 textodecora<- gsub("\n","",textodecora)
 textodecora <- gsub("\t","",textodecora)
@@ -77,12 +78,12 @@ write.table(dfPalabrasDecora2, file="Palabrasdecora2.txt")
 
 
 #_________2.- inicializando la variable archivo con el nombre de mi página__________________
-link <- "http://www.elblogdeldecorador.cl/category/proyectos/page/3/"
+link <- "http://www.elblogdeldecorador.cl/category/casa-de-rodrigo/"
 
 # Leyendo el HTML del archivo
-blogRodrigo <- read_html(link)
+CasaRodrigo <- read_html(link)
 
-links <- html_nodes(blogRodrigo,".custom")
+links <- html_nodes(CasaRodrigo,".custom")
 
 links <- html_attr(links,"href")
 
@@ -91,26 +92,10 @@ for(link in links){
   print(link)
   link <- link
   
-  blogRodrigo <- read_html(link)
+  CasaRodrigo <- read_html(link)
 }
 
-# inicializando la variable archivo con el nombre de mi página
-link <- "http://www.elblogdeldecorador.cl/category/proyectos/page/3/"
 
-# Leyendo el HTML del archivo
-blogRodrigo <- read_html(link)
-
-links <- html_nodes(blogRodrigo,".custom")
-
-links <- html_attr(links,"href")
-
-
-for(link in links){
-  print(link)
-  link <- link
-  
-  blogRodrigo <- read_html(link)
-}
 
 
 ###Iniciando la extracción de información texto ###
@@ -133,6 +118,3 @@ for(link2 in links2){
   CasaAldo <- read_html(link2)
 
 }
-
-
-
