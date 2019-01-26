@@ -73,7 +73,26 @@ write.table(dfPalabrasDecora2, file="Palabrasdecora2.txt")
 
 
 
-#_________2.- inicializando la variable archivo con el nombre de mi página__________________
+#_________2.- Iniciando la extracción  links __________________
+
+Enlace <- "http://www.elblogdeldecorador.cl/category/proyectos/"
+
+# Leyendo el HTML del archivo
+ProyectosRealizados<- read_html(Enlace)
+
+Enlaces <- html_nodes(ProyectosRealizados,".custom")
+
+Enlaces <- html_attr(Enlaces,"href")
+
+
+for(Enlace in Enlaces){
+  print(Enlace)
+  Enlace <- Enlace
+  
+  ProyectosRealizados <- read_html(Enlace)
+}
+
+#_________3.-hora es tiempo de extarer links de contenido subidos por Rodrigo._______________
 
 conteoLinks <- 0
 for(i in 1:10){
@@ -99,51 +118,40 @@ for(link in links) {
   link <- read_html(link)
 }
 
+#_________4.-hora es tiempo de extarer links de contenido subidos por Aldo._______________
 
-#Grey debes realizar esto con aldo.tambien, si puedes crear un grafico  de los posteos entre aldo y rodrigo.
-
-
-
-
-
-################################################################################################
-link <- "http://www.elblogdeldecorador.cl/category/casa-de-rodrigo/"
-
-# Leyendo el HTML del archivo
-CasaRodrigo <- read_html(link)
-
-links <- html_nodes(CasaRodrigo,".custom")
-
-links <- html_attr(links,"href")
-
-
-for(link in links){
-  print(link)
-  link <- link
+conteoLinks2 <- 0
+for(i in 1:15){
+  link2 <- paste("http://www.elblogdeldecorador.cl/category/casa-aldo/page/",i,sep = "")
   
-  CasaRodrigo <- read_html(link)
+  print(link2)
+  
+  # aquì pegue la lògica para extraer los links
+  # conteoLinks <- conteoLinks + length(linksExtraidos)
+  CasaAldo <- read_html(link2)
+  
+  links2 <- html_nodes(CasaAldo,".custom")
+  
+  links2 <- html_attr(links2,"href")
+  conteoLinks2 <- conteoLinks2 + length(links2)
+  
 }
 
-
-
-
-###Iniciando la extracción de información texto ###
-
-# inicializando la variable archivo con el nombre de mi página
-link2 <- "http://www.elblogdeldecorador.cl/category/casa-aldo/"
-
-# Leyendo el HTML del archivo
-CasaAldo<- read_html(link2)
-
-links2 <- html_nodes(CasaAldo,".custom")
-
-links2 <- html_attr(links2,"href")
-
-
-for(link2 in links2){
+ for(link2 in links2) {
   print(link2)
   link2 <- link2
   
-  CasaAldo <- read_html(link2)
+  link2 <- read_html(link2)
+ }
 
-}
+
+
+
+
+
+
+
+
+
+
+
