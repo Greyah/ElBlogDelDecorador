@@ -80,50 +80,27 @@ for(i in 1:10){
   link <- paste("http://www.elblogdeldecorador.cl/category/casa-de-rodrigo/page/",i,sep = "")
   
   print(link)
-}
+
   # aquì pegue la lògica para extraer los links
-
-links <- html_nodes(link,".custom")
-
-links <- html_attr(links,"href")
- for(link in links) {
-  print(link)
-  link <- link
-  
-  link <- read_html(link)
- }
-
-
-# conteoLinks <- conteoLinks + length(linksExtraidos)
-conteoLinks <- conteoLinks + length(linksExtraidos)
-
-
-
-
-
-
-
-
-
-
-# Leyendo el HTML del archivo
-CasaRodrigo <- read_html(link)
+  # conteoLinks <- conteoLinks + length(linksExtraidos)
+  CasaRodrigo <- read_html(link)
 
 links <- html_nodes(CasaRodrigo,".custom")
 
 links <- html_attr(links,"href")
+conteoLinks <- conteoLinks + length(links)
 
+}
 
-for(link in links){
+for(link in links) {
   print(link)
   link <- link
   
-  CasaRodrigo <- read_html(link)
+  link <- read_html(link)
 }
 
 
-
-
+#Grey debes realizar esto con aldo.tambien, si puedes crear un grafico  de los posteos entre aldo y rodrigo.
 
 
 
